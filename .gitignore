@@ -102,3 +102,6 @@ ENV/
 
 # glade
 *.glade~
+
+# SQLite
+*.db
