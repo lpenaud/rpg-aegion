@@ -109,7 +109,9 @@ class Database(sqlite3.Connection):
         :return: Tuples of dictionary
         :rtype: tuple
         """
-        return self.execute(req).fetchall()
+        if 'SELECT' in req:
+            return self.execute(req).fetchall()
+        raise Error('You selected no data')
 
     def __generate_insert(self, table, fields):
         fields_values = []

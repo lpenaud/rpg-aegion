@@ -105,3 +105,6 @@ ENV/
 
 # SQLite
 *.db
+
+# fuse hidden
+.fuse_hidden*
