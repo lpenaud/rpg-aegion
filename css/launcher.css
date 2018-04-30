@@ -1,0 +1,27 @@
+#window-launcher label {
+  font-style: italic;
+  font: 16pt "DejaVu Serif";
+}
+
+#window-launcher {
+  background: linear-gradient(0.50turn, #FFE387, #FFFFFF);
+}
+
+#window-launcher label {
+  font-weight: bold;
+}
+
+#window-launcher #label-title {
+  font: 40pt "DejaVu Serif";
+}
+
+#window-launcher #box-menu {
+  margin-top: 64px;
+  margin-bottom: 64px;
+  margin-left: 128px;
+  margin-right: 128px;
+}
+
+#window-launcher #box-menu > box {
+  margin-bottom: 32px;
+}

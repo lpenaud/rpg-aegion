@@ -1,37 +1,48 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from src.Sqlite import Database
+import sys
 
-db = Database('sql/mydb.db')
+sys.path.insert(0, 'src')
 
-db.execute_from_file('sql/sample.sql')
+import Window
+import utils
 
-data_to_insert = [
-    {
-        'name': 'ypenaud',
-        'age': 22
+def lottery_cb(*args):
+    print('lottery triggered')
+
+def characters_cb(*args):
+    print('characters triggered')
+
+def bestiary_cb(*args):
+    print('bestiary triggered')
+
+def armory_cb(*args):
+    print('characters triggered')
+
+laucher_elements = {
+    'lottery': {
+        'label': 'Loterie',
+        'image': 'images/d20-128x128.png',
+        'callback': lottery_cb
     },
-    {
-        'name': 'mpenaud',
-        'age': 25
+    'characters': {
+        'label': 'Fiches de personnages',
+        'image': 'images/knight-128.png',
+        'callback': characters_cb
+    },
+    'bestiary': {
+        'label': 'Bestiaire',
+        'image': 'images/skeleton-128x128.png',
+        'callback': bestiary_cb
+    },
+    'armory': {
+        'label': 'Armurerie',
+        'image': 'images/sword-128x128.png',
+        'callback': armory_cb
     }
-]
+}
 
-print('INSERT')
-db.insertmany('users', data_to_insert)
-data = db.selectall('SELECT * FROM users')
-for value in data:
-    print(value)
-
-data_to_update = data_to_insert[0].copy()
-data_to_update['name'] = 'freddy'
-data_to_update['age'] = 20
-
-print('UPDATE')
-db.update('users', data_to_update, 'id=1 OR id=3')
-data = db.selectall('SELECT * FROM users')
-for value in data:
-    print(value)
-
-db.close()
+Window.set_css_from_file('css/launcher.css')
+app = Window.Launcher('glade/launcher.glade', laucher_elements)
+app.load()

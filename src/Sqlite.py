@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
 import sqlite3
 
@@ -15,7 +15,7 @@ class Database(sqlite3.Connection):
     def __init__(self, db, auto_commit = True):
         super(Database, self).__init__(db)
         self.row_factory = Database.dict_factory
-        self.auto_commit = auto_commit
+        self.__auto_commit = auto_commit
 
     @staticmethod
     def dict_factory(cursor, row):
