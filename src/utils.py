@@ -7,7 +7,7 @@ import os
 import sys
 import json
 
-def load(strf):
+def load_json(strf):
     """
     load a JSON file in a dict
 
@@ -16,27 +16,17 @@ def load(strf):
     :return: data in JSON file
     :rtype: dict
     """
+    data = {}
 
     if not(isinstance(strf, str)):
         raise TypeError("arg must be a str")
 
     with open(strf, mode='r', encoding="utf-8-sig") as f:
-        tmp = json.loads(f.read())
+        data = json.loads(f.read())
 
-    jsonData = {}
+    return data
 
-    for key, value in tmp.items(): #Enable set() class in list in JSON
-        if isinstance(value, list) and "set" in value:
-            obj = set(value)
-            obj.remove("set")
-        else:
-            obj = value
-
-        jsonData[key] = obj
-
-    return jsonData
-
-def isFrozen():
+def is_frozen():
     """
     Test if the application is frozen (pyinstaller)
 
@@ -45,7 +35,7 @@ def isFrozen():
     """
     return getattr(sys, 'frozen', False)
 
-def resolvePath(f):
+def resolve_path(f):
     """
     Get absolute path of a file (All the files imports have to use this function)
 
@@ -54,7 +44,7 @@ def resolvePath(f):
     :return: Absolute path of the file
     :rtype: str
     """
-    if isFrozen():
+    if is_frozen():
         path = os.path.dirname(os.path.realpath(__file__)) + '/'
     else:
         path = os.path.dirname(os.path.realpath(__file__)) + '/../'

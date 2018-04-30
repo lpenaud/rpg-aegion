@@ -44,8 +44,9 @@ laucher_elements = {
     }
 }
 
-db = Sqlite.Database('sql/RPG.sql', auto_commit = True)
+db = Sqlite.Database('sql/RPG.db', auto_commit = True)
 db.execute_from_file('sql/RPG.sql')
 Window.set_css_from_file('css/launcher.css')
 app = Window.Launcher('glade/launcher.glade', laucher_elements)
 app.load()
+db.close()

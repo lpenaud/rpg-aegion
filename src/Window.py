@@ -18,7 +18,7 @@ class MyWindow(Gtk.Builder):
     :type f: str
     """
     def __init__(self, f, winid):
-        pathname = utils.resolvePath(f)
+        pathname = utils.resolve_path(f)
         Gtk.Builder.__init__(self)
         self.add_from_file(pathname)
         self.__winid = winid
@@ -61,7 +61,7 @@ class MyWindow(Gtk.Builder):
         :type height: int
         """
         image = Pixbuf.new_from_file_at_size(
-            utils.resolvePath(pathimg),
+            utils.resolve_path(pathimg),
             width=width,
             height=height
         )
@@ -123,7 +123,7 @@ class Launcher(MyWindow):
 
 
 def set_css_from_file(sheet):
-    pathname = utils.resolvePath(sheet)
+    pathname = utils.resolve_path(sheet)
     provider = Gtk.CssProvider()
     with open(pathname, mode='rb') as f:
         provider.load_from_data(f.read())
