@@ -1,4 +1,5 @@
 # RPG
+Application which help you during your pen and paper RPG
 
 ## Credits
 Images : 
